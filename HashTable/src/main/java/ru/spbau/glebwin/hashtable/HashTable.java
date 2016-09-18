@@ -26,13 +26,7 @@ public class HashTable {
      * @return true if the key exists, false otherwise
      */
     public boolean contains(String key) {
-        List list = getTargList(key);
-        for (ListEntry node = list.getHead(); node != null; node = node.getNext()) {
-            if (node.getData().getKey().equals(key)) {
-                return true;
-            }
-        }
-        return false;
+        return get(key) != null;
     }
 
     /**
