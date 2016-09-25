@@ -1,14 +1,15 @@
 package ru.spbau.glebwin.hashtable;
 
 /**
- * Created by glebwin on 9/11/16.
+ * Hash table from string to string.
+ * Implemented with linked lists.
  */
 public class HashTable {
     private List table[];
     private int keysNum;
 
     public HashTable() {
-        table = new List[1];
+        table = new List[10];
         for (int i = 0; i < table.length; i++) {
             table[i] = new List();
         }
@@ -33,37 +34,29 @@ public class HashTable {
      * @return Corresponding value or null if the key doesn't exist
      */
     public String get(String key) {
-        List list = getTargList(key);
-        for (ListEntry node = list.getHead(); node != null; node = node.getNext()) {
-            if (node.getData().getKey().equals(key)) {
-                return node.getData().getValue();
-            }
-        }
-        return null;
+        List list = getTargetList(key);
+        return list.findByKey(key);
     }
 
     /**
      * Add pair key-value to hash table
+     * If the number of keys reaches the number of lists
+     * it doubles the number of lists and reallocate all data
      * @return If the key already exists return its previous value or null otherwise
      */
     public String put(String key, String value) {
-        List list = getTargList(key);
-        for (ListEntry node = list.getHead(); node != null; node = node.getNext()) {
-            if (node.getData().getKey().equals(key)) {
-                String oldValue = node.getData().getValue();
-                node.getData().setValue(value);
-                return oldValue;
+        List list = getTargetList(key);
+
+        String oldValue = list.insertUniqueKey(key, value);
+
+        if(oldValue == null) {
+            keysNum++;
+            if (keysNum >= table.length) {
+                resize(table.length * 2);
             }
         }
 
-        keysNum++;
-        list.insert(new HashTableEntry(key, value));
-
-        if (keysNum >= table.length) {
-           resize(table.length * 2);
-        }
-
-        return null;
+        return oldValue;
     }
 
     /**
@@ -72,26 +65,15 @@ public class HashTable {
      * @return Corresponding value or null if the key doesn't exists
      */
     public String remove(String key) {
-        List list = getTargList(key);
+        List list = getTargetList(key);
 
-        // Check special case: lists head
-        if (!list.empty() && list.getHead().getData().getKey().equals(key)) {
+        String deletedValue = list.removeByKey(key);
+
+        if(deletedValue != null) {
             keysNum--;
-            String retValue = list.getHead().getData().getValue();
-            list.removeHead();
-            return retValue;
         }
 
-        for (ListEntry node = list.getHead(); !node.isLast(); node = node.getNext()) {
-            if (node.getNext().getData().getKey().equals(key)) {
-                keysNum--;
-                String retValue = node.getNext().getData().getValue();
-                node.removeNext();
-                return retValue;
-            }
-        }
-
-        return null;
+        return deletedValue;
     }
 
     /**
@@ -106,9 +88,10 @@ public class HashTable {
         }
 
         for (List list : oldTable) {
-            for (ListEntry node = list.getHead(); node != null; node = node.getNext()) {
-                HashTableEntry data = node.getData();
-                getTargList(data.getKey()).insert(data);
+            for (List.ListEntry node = list.getHead(); node != null; node = node.getNext()) {
+                String key = node.getKey();
+                String value = node.getValue();
+                getTargetList(key).insertUniqueKey(key, value);
             }
         }
     }
@@ -126,7 +109,7 @@ public class HashTable {
     /**
      * @return Hash tables list corresponding to the keys hash
      */
-    private List getTargList(String key) {
+    private List getTargetList(String key) {
         return table[(key.hashCode() % table.length + table.length) % table.length];
     }
 }

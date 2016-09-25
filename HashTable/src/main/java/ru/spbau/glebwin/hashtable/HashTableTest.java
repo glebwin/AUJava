@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by glebwin on 9/17/16.
+ * Test class for Hash table
  */
 public class HashTableTest {
     private HashTable hashTable;
@@ -22,17 +22,17 @@ public class HashTableTest {
 
     @Test
     public void size() throws Exception {
-        assertEquals(hashTable.size(), 3);
+        assertEquals(3, hashTable.size());
 
         hashTable.put("input", "output");
-        assertEquals(hashTable.size(), 3);
+        assertEquals(3, hashTable.size());
 
         hashTable.put("a", "b");
-        assertEquals(hashTable.size(), 4);
+        assertEquals(4, hashTable.size());
 
         hashTable.remove("key");
         hashTable.remove("a");
-        assertEquals(hashTable.size(), 2);
+        assertEquals(2, hashTable.size());
     }
 
     @Test
@@ -46,28 +46,28 @@ public class HashTableTest {
 
     @Test
     public void get() throws Exception {
-        assertEquals(hashTable.get("input"), "output");
-        assertEquals(hashTable.get("key"), "value");
-        assertEquals(hashTable.get("tag"), "data");
+        assertEquals("output", hashTable.get("input"));
+        assertEquals("value", hashTable.get("key"));
+        assertEquals("data", hashTable.get("tag"));
 
         assertNull(hashTable.get("new key"));
     }
 
     @Test
     public void put() throws Exception {
-        assertEquals(hashTable.put("input", "putout"), "output");
-        assertEquals(hashTable.put("key", "notvalue"), "value");
-        assertEquals(hashTable.put("tag", "tag"), "data");
+        assertEquals("output", hashTable.put("input", "putout"));
+        assertEquals("value", hashTable.put("key", "notvalue"));
+        assertEquals("data", hashTable.put("tag", "tag"));
 
         assertNull(hashTable.put("new key", "new value"));
 
-        assertEquals(hashTable.put("tag", "t"), "tag");
+        assertEquals("tag", hashTable.put("tag", "t"));
     }
 
     @Test
     public void remove() throws Exception {
-        assertEquals(hashTable.remove("input"), "output");
-        assertEquals(hashTable.remove("tag"), "data");
+        assertEquals("output", hashTable.remove("input"));
+        assertEquals("data", hashTable.remove("tag"));
 
         assertNull(hashTable.remove("new key"));
     }
@@ -76,7 +76,7 @@ public class HashTableTest {
     public void clear() throws Exception {
         hashTable.clear();
 
-        assertEquals(hashTable.size(), 0);
+        assertEquals(0, hashTable.size());
         assertFalse(hashTable.contains("key"));
         assertNull(hashTable.get("input"));
         assertNull(hashTable.put("tag", "new data"));
