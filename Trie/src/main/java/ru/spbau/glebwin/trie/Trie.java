@@ -169,13 +169,10 @@ public class Trie implements StreamSerializable {
          */
         @NotNull
         Node goChild(Character character) {
-            if (hasChild(character)) {
-                return getChild(character);
-            } else {
-                Node newNode = new Node();
-                children.put(character, newNode);
-                return newNode;
+            if (!hasChild(character)) {
+                children.put(character, new Node());
             }
+            return getChild(character);
         }
 
         boolean isTerminal() {
