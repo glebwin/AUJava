@@ -49,7 +49,7 @@ public class HashTable {
 
         String oldValue = list.insertUniqueKey(key, value);
 
-        if(oldValue == null) {
+        if (oldValue == null) {
             keysNum++;
             if (keysNum >= table.length) {
                 resize(table.length * 2);
@@ -69,7 +69,7 @@ public class HashTable {
 
         String deletedValue = list.removeByKey(key);
 
-        if(deletedValue != null) {
+        if (deletedValue != null) {
             keysNum--;
         }
 
