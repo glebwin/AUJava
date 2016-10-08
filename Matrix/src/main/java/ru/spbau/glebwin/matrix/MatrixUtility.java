@@ -20,16 +20,16 @@ public class MatrixUtility {
         System.out.print(matrix[matrix.length / 2][matrix.length / 2]);
 
         for (int layer = 1; layer < layersNum; layer++) {
-            for (int i = 0; i < 2*layer; i++) {
+            for (int i = 0; i < 2 * layer; i++) {
                 System.out.print(" " + matrix[layersNum - layer + i][layersNum + layer - 1]);
             }
-            for (int i = 0; i < 2*layer; i++) {
+            for (int i = 0; i < 2 * layer; i++) {
                 System.out.print(" " + matrix[layersNum + layer - 1][layersNum + layer - i - 2]);
             }
-            for (int i = 0; i < 2*layer; i++) {
+            for (int i = 0; i < 2 * layer; i++) {
                 System.out.print(" " + matrix[layersNum + layer - i - 2][layersNum - layer - 1]);
             }
-            for (int i = 0; i < 2*layer; i++) {
+            for (int i = 0; i < 2 * layer; i++) {
                 System.out.print(" " + matrix[layersNum - layer - 1][layersNum - layer + i]);
             }
         }
@@ -58,13 +58,6 @@ public class MatrixUtility {
                 matrix[i][prefix] = matrix[i][minColumn];
                 matrix[i][minColumn] = temp;
             }
-        }
-
-        for (int[] row : matrix) {
-            for (int x : row) {
-                System.out.print(x + " ");
-            }
-            System.out.println();
         }
     }
 
