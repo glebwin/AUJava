@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BinaryTree.iml" filepath="$PROJECT_DIR$/.idea/modules/BinaryTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BinaryTree_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BinaryTree_main.iml" group="BinaryTree" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BinaryTree_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BinaryTree_test.iml" group="BinaryTree" />
+    </modules>
+  </component>
+</project>
