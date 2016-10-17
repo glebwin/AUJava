@@ -6,6 +6,10 @@ import java.io.*;
  * Reads integers from stream and writes them squared to another stream.
  */
 public class StreamSquarer {
+    /**
+     * Tries to parse inputStream's lines as integers.
+     * Writes to outputStream their squared values or "null" for non-integer lines.
+     */
     public static void process(InputStream inputStream, OutputStream outputStream) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {

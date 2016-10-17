@@ -1,7 +1,7 @@
 package ru.spbau.glebwin.maybe;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Function;
 
@@ -14,19 +14,23 @@ public class Maybe<T> {
     @Nullable
     private final T value;
 
-    private Maybe(T value) {
+    private Maybe(@Nullable T value) {
         this.value = value;
     }
 
     /**
+     * Creates instance of Maybe that contains given value.
+     *
      * @return Newly created instance of Maybe containing given value.
      */
     @NotNull
-    public static <T> Maybe<T> just(T t) {
+    public static <T> Maybe<T> just(@NotNull T t) {
         return new Maybe<>(t);
     }
 
     /**
+     * Creates instance of Maybe that represents Maybe without value.
+     *
      * @return New empty instance of Maybe.
      */
     @NotNull
@@ -48,6 +52,8 @@ public class Maybe<T> {
     }
 
     /**
+     * Checks whether Maybe contains value or it's not.
+     *
      * @return True if object stores value, false if it's empty.
      */
     public boolean isPresent() {
