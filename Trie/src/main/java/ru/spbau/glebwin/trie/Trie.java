@@ -40,10 +40,7 @@ public class Trie implements StreamSerializable {
     /**
      * @return True if element exists in trie, false otherwise.
      */
-    public boolean contains(String element) {
-        if (element == null) {
-            throw new IllegalArgumentException("null argument");
-        }
+    public boolean contains(@NotNull String element) {
         Node node = root;
         for (char symbol : element.toCharArray()) {
             if (!node.hasChild(symbol)) {
@@ -59,10 +56,7 @@ public class Trie implements StreamSerializable {
      *
      * @return True if element existed in the trie before the operation, false otherwise.
      */
-    public boolean remove(String element) {
-        if (element == null) {
-            throw new IllegalArgumentException("null argument");
-        }
+    public boolean remove(@NotNull String element) {
         if (!contains(element)) {
             return false;
         }
@@ -82,7 +76,7 @@ public class Trie implements StreamSerializable {
     /**
      * Cuts off the largest empty branch corresponding to the path.
      */
-    private void cleanup(String path) {
+    private void cleanup(@NotNull String path) {
         Node node = root;
         for (int i = 0; i < path.length() - 1; i++) {
             if (node.getChild(path.charAt(i)).getSubtreeTerminalsNumber() == 0) {
@@ -105,10 +99,7 @@ public class Trie implements StreamSerializable {
      *
      * @return Number of elements that begin with the prefix.
      */
-    public int howManyStartsWithPrefix(String prefix) {
-        if (prefix == null) {
-            throw new IllegalArgumentException("null argument");
-        }
+    public int howManyStartsWithPrefix(@NotNull String prefix) {
         Node node = root;
         for (char symbol : prefix.toCharArray()) {
             if (!node.hasChild(symbol)) {

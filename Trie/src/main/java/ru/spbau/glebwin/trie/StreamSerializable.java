@@ -8,7 +8,13 @@ import java.io.OutputStream;
  * Interface for objects that can be serialized/deserialized to/from stream.
  */
 public interface StreamSerializable {
+    /**
+     * Serializes to stream.
+     */
     void serialize(OutputStream out) throws IOException;
 
+    /**
+     * Deserializes from stream.
+     */
     void deserialize(InputStream in) throws IOException, ClassNotFoundException;
 }
