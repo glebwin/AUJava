@@ -12,7 +12,7 @@ public class Trie implements StreamSerializable {
     @NotNull
     private Node root;
 
-    Trie() {
+    public Trie() {
         root = new Node();
     }
 
@@ -21,10 +21,7 @@ public class Trie implements StreamSerializable {
      *
      * @return True if element wasn't in the trie, false otherwise.
      */
-    public boolean add(String element) {
-        if (element == null) {
-            throw new IllegalArgumentException("null argument");
-        }
+    public boolean add(@NotNull String element) {
         if (contains(element)) {
             return false;
         }
@@ -104,6 +101,8 @@ public class Trie implements StreamSerializable {
     }
 
     /**
+     * Finds number of strings in the trie that start with given prefix.
+     *
      * @return Number of elements that begin with the prefix.
      */
     public int howManyStartsWithPrefix(String prefix) {
