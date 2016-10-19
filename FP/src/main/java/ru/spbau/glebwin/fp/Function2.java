@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * @param <T2> Type of the 2nd argument.
  * @param <R>  Type of the result.
  */
+@FunctionalInterface
 public interface Function2<T1, T2, R> {
     /**
      * Applies function to given arguments.

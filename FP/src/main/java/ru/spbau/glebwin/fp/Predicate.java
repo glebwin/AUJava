@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param <T> Type of the argument.
  */
+@FunctionalInterface
 public interface Predicate<T> extends Function1<T, Boolean> {
     /**
      * Makes or-predicate of the original predicate and given one.
