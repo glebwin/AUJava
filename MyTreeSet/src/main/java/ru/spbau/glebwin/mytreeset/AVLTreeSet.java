@@ -36,7 +36,7 @@ public class AVLTreeSet<E> extends AbstractSet<E> implements MyTreeSet<E> {
             return true;
         }
 
-        ArrayList<DownEdge> path = new ArrayList<DownEdge>();
+        ArrayList<DownEdge> path = new ArrayList<>();
         if (addUnbalanced(element, path)) {
             size++;
             balance(path);
